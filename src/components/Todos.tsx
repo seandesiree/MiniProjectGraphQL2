@@ -13,7 +13,7 @@ const Todos: React.FC = () => {
         <div className="todos-section">
             <h2>User Todos</h2>
             <ul>
-                {data.user.todos.map(todo => (
+            {data.user.todos.data.map(todo => (
                     <li key={todo.id}>
                         <input 
                             type="checkbox" 

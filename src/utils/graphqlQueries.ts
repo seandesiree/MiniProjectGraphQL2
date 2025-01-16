@@ -60,7 +60,6 @@ export const GET_USER_ALBUMS = gql`
                 data {
                     id
                     title
-                    user
                 }
             }
         }
@@ -71,10 +70,12 @@ export const GET_USER_TODOS = gql`
     query GetUserTodos($userId: ID!) {
         user(id: $userId) {
             todos {
-                id
+            data {
+                 id
                 title
                 completed
             }
+}
         }
     }
 `;
