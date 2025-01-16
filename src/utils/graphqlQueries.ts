@@ -2,24 +2,33 @@
 import { gql } from '@apollo/client';
 
 export const GET_USER_PROFILE = gql`
-    query GetUserProfile {
-        user {
+    query GetUserProfile($userId: ID!) {
+        user(id: $userId){
             name
             email
-            address
+            address{
+                street
+            }
             phone
             website
-            company
+            company{
+                name
+            }
         }
     }
 `;
 
 export const GET_USER_POSTS = gql`
-    query GetUserPosts {
-        posts {
-            id
-            title
-            content
+    query GetUserPosts($userId: ID!) {
+        user(id: $userId) {
+            posts{
+                data{
+                    id
+                    title
+                    body
+                }
+            }
+            
         }
     }
 `;
@@ -45,20 +54,27 @@ export const UPDATE_POST = gql`
 `;
 
 export const GET_USER_ALBUMS = gql`
-    query GetUserAlbums {
-        albums {
-            id
-            title
+    query GetUserAlbums($userId: ID!) {
+        user(id: $userId) {
+            albums {
+                data {
+                    id
+                    title
+                    user
+                }
+            }
         }
     }
 `;
 
 export const GET_USER_TODOS = gql`
-    query GetUserTodos {
-        todos {
-            id
-            title
-            completed
+    query GetUserTodos($userId: ID!) {
+        user(id: $userId) {
+            todos {
+                id
+                title
+                completed
+            }
         }
     }
 `;

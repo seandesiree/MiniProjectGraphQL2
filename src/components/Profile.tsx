@@ -3,7 +3,7 @@ import { GET_USER_PROFILE } from '../utils/graphqlQueries';
 import { useQuery } from '@apollo/client';
 
 const Profile: React.FC = () => {
-    const { loading, error, data } = useQuery(GET_USER_PROFILE);
+    const { loading, error, data } = useQuery(GET_USER_PROFILE, {variables: {userId: 1} });
     
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
@@ -15,10 +15,10 @@ const Profile: React.FC = () => {
             <h2>User Profile</h2>
             <p><strong>Name:</strong> {name}</p>
             <p><strong>Email:</strong> {email}</p>
-            <p><strong>Address:</strong> {address}</p>
+            <p><strong>Address:</strong> {address.street}</p>
             <p><strong>Phone:</strong> {phone}</p>
             <p><strong>Website:</strong> {website}</p>
-            <p><strong>Company:</strong> {company}</p>
+            <p><strong>Company:</strong> {company.name}</p>
         </div>
     );
 };

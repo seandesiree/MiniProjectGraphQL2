@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import { GET_USER_TODOS } from '../utils/graphqlQueries';
 
 const Todos: React.FC = () => {
-    const { loading, error, data } = useQuery(GET_USER_TODOS);
+    const { loading, error, data } = useQuery(GET_USER_TODOS, {variables: {userId: 1}});
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
@@ -13,7 +13,7 @@ const Todos: React.FC = () => {
         <div className="todos-section">
             <h2>User Todos</h2>
             <ul>
-                {data.todos.map((todo: { id: React.Key | null | undefined; completed: boolean | undefined; title: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }) => (
+                {data.user.todos.map(todo => (
                     <li key={todo.id}>
                         <input 
                             type="checkbox" 
@@ -28,3 +28,5 @@ const Todos: React.FC = () => {
 };
 
 export default Todos;
+
+

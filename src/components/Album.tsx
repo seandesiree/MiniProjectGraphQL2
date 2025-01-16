@@ -7,3 +7,4 @@ const Album: React.FC<{ album: any }> = ({ album }) => (
 );
 
 export default Album;
+
